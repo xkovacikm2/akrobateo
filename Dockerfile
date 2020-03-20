@@ -13,6 +13,8 @@ ADD . /go/src/github.com/kontena/akrobateo/
 
 ARG ARCH=amd64
 
+# Remove CR to allow building docker on windows file system
+RUN sed -i -e 's/\r$//' ./build.sh
 RUN ./build.sh "linux/${ARCH}"
 
 FROM scratch
